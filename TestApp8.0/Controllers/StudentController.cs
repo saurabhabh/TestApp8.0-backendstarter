@@ -78,6 +78,17 @@ namespace TestApp8._0.Controllers
         }
 
         // PATCH api/values
+        //[
+        //    {
+        //        "op": "replace",
+        //        "path": "/Name",
+        //        "value": "Sa1"
+        //    }
+        //]
+        //
+        //
+        //
+
         [Consumes("application/json-patch+json")]
         [HttpPatch("{id}")]
         public async Task<IActionResult> Patch(int id, [FromBody] JsonPatchDocument<StudentDto> jsonPatchDocument)
