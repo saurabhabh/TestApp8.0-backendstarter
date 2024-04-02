@@ -1,8 +1,6 @@
 using TestApp8._0.Domain;
 using TestApp8._0.Repository;
 using TestApp8._0.Service;
-using Newtonsoft.Json;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +19,14 @@ var services = builder.Services;
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 services.AddScoped<IStudentService, StudentService>();
+
+
+// Allow all origins
+services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    // Check if this is working
+    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+}));
 
 var app = builder.Build();
 
